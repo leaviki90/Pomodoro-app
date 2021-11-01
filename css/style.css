@@ -1,0 +1,546 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Roboto+Slab:wght@700&family=Space+Mono:wght@700&display=swap");
+
+/* font-family: 'Kumbh Sans', sans-serif;
+font-family: 'Roboto Slab', serif;
+font-family: 'Space Mono', monospace; */
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+:root {
+  --body-text-color: rgba(30, 33, 63, 0.4);
+  --body-bg-color: #1e213f;
+  --controls-bg-color: #161932;
+  --controls-label-text: rgba(215, 224, 255, 0.4);
+  --controls-label-bg: #161932;
+  --label-active-color: #1e213f;
+  --label-active-bg: #f87070;
+  --svg-stroke-color: #f87070;
+  --main-color: #f87070;
+  --main-font: "Kumbh Sans", sans-serif;
+  --font-default: "Kumbh Sans", sans-serif;
+  --font-roboto-slab: "Roboto Slab", serif;
+  --font-space-mono: "Space Mono", monospace;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+h3 {
+  font-size: 11px;
+  line-height: 11px;
+  letter-spacing: 4.23077px;
+  color: #161932;
+  text-transform: uppercase;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  color: var(--body-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--body-bg-color);
+  font-family: var(--main-font);
+}
+.container {
+  max-width: 327px;
+  text-align: center;
+  padding: 32px 0 48px;
+}
+.logo {
+  margin-bottom: 4.5rem;
+}
+.controls {
+  background-color: var(--controls-bg-color);
+  border-radius: 31.5px;
+  border-color: transparent;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 8.5px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+.controls label {
+  font-size: 1.2rem;
+  color: var(--controls-label-text);
+  width: 106px;
+  line-height: 48px;
+  border-radius: 26.5px;
+  background-color: var(--controls-label-bg);
+  cursor: pointer;
+  font-family: var(--main-font);
+}
+.controls label:hover {
+  color: rgba(215, 224, 255, 1);
+}
+.controls input {
+  display: none;
+}
+.controls input:checked + label {
+  background: var(--main-color);
+  color: var(--label-active-color);
+}
+.timer {
+  position: relative;
+  height: 300px;
+  margin-bottom: 107px;
+}
+.timer-display {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.timer-circles .circle1 {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(315deg, #2e325a 0%, #0e112a 100%);
+  box-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.timer-circles .circle2 {
+  width: 267.8px;
+  height: 267.8px;
+  border-radius: 50%;
+  background: #161932;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.timer-circles .circle3 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.timer-circles .circle3 .cls-1 {
+  stroke: var(--main-color);
+}
+.timer-display .display-time {
+  font-size: 80px;
+  line-height: 80px;
+  letter-spacing: -4px;
+  color: #d7e0ff;
+  margin-bottom: 12.06px;
+  display: block;
+}
+.timer-display .display-pause {
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 13.125px;
+  color: #d7e0ff;
+  cursor: pointer;
+}
+.timer-display .display-pause:hover {
+  color: var(--main-color);
+}
+.icon-settings {
+  cursor: pointer;
+}
+.settings {
+  display: none;
+}
+.settings.active {
+  display: block;
+  top: 46px;
+  right: 24px;
+  left: 24px;
+  position: absolute;
+  background: #ffffff;
+  border-radius: 15px;
+  margin: 0 auto;
+  z-index: 3;
+  max-width: 327px;
+}
+.settings-container {
+  padding: 24px 0;
+  position: relative;
+}
+.settings-container::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  display: block;
+  background: #e3e1e1;
+  top: 72px;
+  position: absolute;
+}
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  padding: 0 24px;
+}
+.settings-header h2 {
+  font-size: 20px;
+  line-height: 20px;
+  color: #161932;
+}
+.settings-header #closeBtn {
+  cursor: pointer;
+}
+.settings-time {
+  padding-top: 24px;
+  margin-right: 23px;
+  margin-left: 24px;
+  position: relative;
+}
+.settings-time::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  display: block;
+  background: #e3e1e1;
+  top: 206px;
+  position: absolute;
+}
+
+.settings-time h3 {
+  margin-bottom: 18px;
+}
+.form {
+  margin-bottom: 24px;
+}
+
+.form div {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.form div:last-of-type {
+  margin-bottom: 0;
+}
+.settings-time .form input {
+  width: 138px;
+  height: 38px;
+  background: #eff1fa;
+  border-radius: 10px;
+  border-color: transparent;
+  padding-left: 16px;
+  font-family: var(--main-font);
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.settings-time .form input::-webkit-outer-spin-button,
+.settings-time .form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.settings-time .form input[type="number"] {
+  -moz-appearance: textfield;
+}
+.settings-time .form input:focus {
+  outline: none;
+}
+.settings-time .form svg {
+  cursor: pointer;
+}
+.settings-time .form svg:active path,
+.settings-time .form svg:hover path {
+  stroke-opacity: 1;
+}
+.settings-time .icon-arrow-up {
+  position: absolute;
+  top: 10.5px;
+  right: 11px;
+}
+.settings-time .icon-arrow-down {
+  position: absolute;
+  bottom: 9.5px;
+  right: 11px;
+}
+.settings-font {
+  padding-top: 24px;
+  margin-bottom: 24px;
+  position: relative;
+  margin-right: 23px;
+  margin-left: 24px;
+}
+.settings-font::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  display: block;
+  background: #e3e1e1;
+  top: 116px;
+  position: absolute;
+}
+.settings-font h3 {
+  margin-bottom: 18px;
+}
+.settings-font button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-color: transparent;
+  font-size: 15px;
+  line-height: 15px;
+  color: #1e213f;
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+.settings-font button.active {
+  background-color: #161932;
+  color: #ffffff;
+}
+.settings-font button.font-kumbh {
+  font-family: "Kumbh Sans", sans-serif;
+}
+.settings-font buton.font-roboto {
+  font-family: "Roboto Slab", serif;
+}
+.settings-font button.font-space {
+  font-family: "Space Mono", monospace;
+}
+.settings-color {
+  padding-top: 16px;
+  margin-bottom: 59px;
+  position: relative;
+}
+.settings-color h3 {
+  margin-bottom: 18px;
+}
+.settings-color div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.settings-color .color {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-color: transparent;
+  color: #ffffff;
+  margin: 0 8px;
+  cursor: pointer;
+}
+.settings-color .color.color-default {
+  background: #f87070;
+}
+.settings-color .color.color-blue {
+  background-color: #70f3f8;
+}
+.settings-color .color.color-purple {
+  background-color: #d881f8;
+}
+.settings-color .color i {
+  display: none;
+}
+.settings-color .color.active i {
+  display: inline-block;
+  color: #161932;
+}
+.btn-submit {
+  background: var(--main-color);
+  border-radius: 26.5px;
+  border-color: transparent;
+  width: 140px;
+  height: 53px;
+  font-size: 16px;
+  line-height: 16px;
+  transform: translateX(-50%);
+  bottom: -28px;
+  color: #ffffff;
+  position: absolute;
+  left: 50%;
+  font-family: var(--main-font);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 410px;
+    padding: 80px 0 103px;
+  }
+  .logo {
+    margin-bottom: 5.5rem;
+  }
+  .controls {
+    padding: 7.5px;
+    margin-bottom: 10.9rem;
+  }
+  .controls label {
+    font-size: 1.4rem;
+    width: 120px;
+  }
+  .timer {
+    height: 410px;
+    margin-bottom: 144px;
+  }
+  .timer-circles .circle1 {
+    width: 410px;
+    height: 410px;
+  }
+  .timer-circles .circle2 {
+    width: 366px;
+    height: 366px;
+  }
+  .timer-circles .circle3 {
+    width: 339px;
+    height: 339px;
+  }
+  .timer-display .display-time {
+    font-size: 100px;
+    line-height: 101px;
+    letter-spacing: -5px;
+    margin-bottom: 19px;
+  }
+  .timer-display .display-pause {
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 15px;
+  }
+  .settings.active {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 540px;
+    max-width: unset;
+    right: unset;
+  }
+  .settings-container {
+    padding: 34px 0px 59px 0px;
+  }
+  .settings-container::after {
+    top: 93px;
+  }
+  .settings-header {
+    margin-bottom: 31px;
+    padding-right: 40px;
+    padding-left: 38px;
+  }
+  .settings-header h2 {
+    font-size: 28px;
+    line-height: 28px;
+  }
+  .settings-time {
+    margin-right: 40px;
+    margin-left: 38px;
+  }
+  .settings-time::after {
+    top: 157px;
+  }
+  .settings-time h3 {
+    font-size: 13px;
+    line-height: 13px;
+    letter-spacing: 5px;
+    margin-bottom: 26px;
+    text-align: start;
+  }
+  .settings-time .form {
+    display: flex;
+    text-align: start;
+  }
+  .settings-time .form div {
+    display: block;
+    margin-bottom: 0px;
+  }
+  .settings-time .form label {
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .settings-time .form input {
+    width: 140px;
+    height: 48px;
+  }
+  .settings-time .icon-arrow-up {
+    top: 32.5px;
+    right: 37px;
+  }
+  .settings-time .icon-arrow-down {
+    bottom: 13.5px;
+    right: 37px;
+  }
+  .settings-font {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 40px;
+    margin-left: 38px;
+  }
+  .settings-font::after {
+    top: 87px;
+  }
+  .settings-font h3 {
+    font-size: 13px;
+    line-height: 13px;
+    letter-spacing: 5px;
+    margin-bottom: 0;
+  }
+  .settings-color {
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 40px;
+    margin-left: 38px;
+    margin-bottom: 0;
+  }
+  .settings-color h3 {
+    font-size: 13px;
+    line-height: 13px;
+    letter-spacing: 5px;
+    margin-bottom: 0;
+  }
+  .settings-color div {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 48px 0 49px;
+  }
+  .controls {
+    margin-bottom: 45px;
+  }
+  .timer {
+    margin-bottom: 63px;
+  }
+}
